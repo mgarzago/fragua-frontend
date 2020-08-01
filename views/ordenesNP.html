@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="/css/patternfly.css">
+        <link rel="stylesheet" href="/css/patternfly-addons.css">
+        <link rel="stylesheet" href="/css/patternfly.min.css">
+        <link rel="stylesheet" href="/css/patternfly-icons.css">
+        <link rel="stylesheet" href="/css/patternfly-pf-icons.css">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+        
+        <title>Órdenes</title>
+    </head>
+    
+    <div class="pf-c-page" id="page-layout-horizontal-nav">
+      <a class="pf-c-skip-to-content pf-c-button pf-m-primary" href="#main-content-page-layout-horizontal-nav">Skip to content</a>
+      <header class="pf-c-page__header">
+        
+        <div class="pf-c-page__header-brand">
+          <a class="pf-c-page__header-brand-link">
+            <img class="pf-c-brand" src="/figures/PF-Masthead-Logo.svg" alt="PatternFly logo" />
+          </a>
+        </div>
+
+        <div class="pf-c-page__header-tools">
+          
+          <div class="pf-c-page__header-tools-group">
+            <div class="pf-c-page__header-tools-item pf-m-hidden pf-m-visible-on-lg">
+              <button class="pf-c-button pf-m-plain" type="button" aria-label="Settings">
+                <i class="fas fa-cog" aria-hidden="true"></i>
+              </button>
+            </div>
+            
+            <div class="pf-c-page__header-tools-item pf-m-hidden pf-m-visible-on-lg">
+              <button class="pf-c-button pf-m-plain" type="button" aria-label="Help">
+                <img class="pf-icon pf-icon-help" src="/figures/help.svg" alt="Help" />
+              </button>
+            </div>
+          </div>
+        </div>
+      </header>
+      
+      <main class="pf-c-page__main" tabindex="-1" id="main-content-page-layout-horizontal-nav">
+
+        <section class="pf-c-page__main-section pf-m-light">
+          <div class="pf-c-content">
+            <h1 style="font-size:50px;">Órdenes No Pagadas</h1>
+          </div>
+        </section>
+
+        <section class="pf-c-page__main-section">
+          
+          <button class="pf-c-button pf-m-primary" type="button" onclick="location.href='/'">
+            Registro de órdenes
+          </button>
+          
+          <button class="pf-c-button pf-m-primary" type="button" onclick="document.getElementById('id01').style.display='block'">
+            Procesar orden
+          </button>
+          
+          <div id="id01" class="w3-modal">
+            <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="max-width:600px">
+        
+              <form class="w3-container" action="/procesar" method="POST">
+                <div class="w3-section">
+                  <label><b>Orden</b></label>
+                  <input class="w3-input w3-border" type="text" placeholder="Ingrese número orden" name="orden" required>
+                  <button class="w3-button w3-block w3-green w3-section w3-padding" type="submit">Procesar</button>
+                </div>
+              </form>
+        
+              <div class="w3-container w3-border-top w3-padding-16 w3-light-grey">
+                <button onclick="document.getElementById('id01').style.display='none'" type="button" class="w3-button w3-red">Cancelar</button>
+              </div>
+        
+            </div>
+          </div>
+          
+        </section>
+        
+        <section>
+          <table class="pf-c-table pf-m-grid-md" role="grid" id="order-table">
+            <thead>
+              <tr>
+                <th>
+                  Orden
+                </th>
+                <th>
+                  Estatus
+                </th>
+                <th>
+                  Email de cliente
+                </th>
+                <th>
+                  Tel. de cliente
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <%ordenes.forEach((element)=>{ %>
+                <tr>
+                  <td><%=element.orden%></td>
+                  <td><%=element.estatus%></td>
+                  <td><%=element.emailCliente%></td>
+                  <td><%=element.telefonoCliente%></td>
+                </tr>
+              <%});%>
+            </tbody>
+          </table>
+        </section>
+        
+      </main>
+    </div>
+</html>
